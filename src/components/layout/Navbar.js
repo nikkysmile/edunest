@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <header className="border-b bg-white">
@@ -7,11 +9,12 @@ export default function Navbar() {
         </h1>
 
         <nav className="hidden gap-8 md:flex">
-          <a href="#">Beranda</a>
-          <a href="#">Tentang</a>
-          <a href="#">Program</a>
-          <a href="#">Guru</a>
-          <a href="#">Kontak</a>
+          <Link href="/">Beranda</Link>
+          <Link href="/tentang">Tentang</Link>
+          <Link href="/program">Program</Link>
+          <Link href="/guru">Guru</Link>
+          <Link href="/galeri">Galeri</Link>
+          <Link href="/kontak">Kontak</Link>
         </nav>
       </div>
     </header>
