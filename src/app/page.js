@@ -1,9 +1,15 @@
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Footer from "@/components/layout/Footer";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">
-        EduNest CMS 🚀
-      </h1>
-    </main>
+    <>
+      <Navbar />
+      <Hero />
+      <About />
+      <Footer />
+    </>
   );
 }
