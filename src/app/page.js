@@ -1,15 +1,13 @@
-import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Footer from "@/components/layout/Footer";
-
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Footer />
-    </>
+    <main className="mx-auto max-w-7xl px-6 py-20">
+      <h1 className="text-5xl font-bold">
+        Selamat Datang di EduNest
+      </h1>
+
+      <p className="mt-6 max-w-xl text-lg text-gray-600">
+        Template website modern untuk sekolah.
+      </p>
+    </main>
   );
 }

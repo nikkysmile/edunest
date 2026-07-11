@@ -1,9 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 py-10 text-center text-white">
-      <p>
-        © 2026 EduNest CMS. All rights reserved.
-      </p>
+    <footer className="border-t py-8 text-center">
+      <p>© 2026 EduNest CMS</p>
     </footer>
   );
 }
