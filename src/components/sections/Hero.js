@@ -1,4 +1,5 @@
 import Container from "../ui/Container";
+import Button from "../ui/Button";
 
 export default function Hero() {
   return (
@@ -33,17 +34,11 @@ export default function Hero() {
 
             <div className="mt-8 flex gap-4">
 
-              <button className="rounded-lg bg-sky-600 px-6 py-3 text-white">
+              <Button>Daftar Sekarang</Button>
 
-                Daftar Sekarang
-
-              </button>
-
-              <button className="rounded-lg border px-6 py-3">
-
-                Lihat Demo
-
-              </button>
+              <Button variant="secondary">
+               Lihat Demo
+              </Button>
 
             </div>
 
