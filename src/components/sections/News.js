@@ -1,7 +1,7 @@
 import PageHeader from "@/components/ui/PageHeader";
 import Container from "@/components/ui/Container";
 
-export default function Berita() {
+export default function News() {
   return (
     <>
       <PageHeader

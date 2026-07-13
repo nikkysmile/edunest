@@ -1,11 +1,11 @@
 import PageHeader from "@/components/ui/PageHeader";
 import Container from "@/components/ui/Container";
 
-export default function Berita() {
+export default function CTA() {
   return (
     <>
       <PageHeader
-        title="Berita"
+        title="CTA"
         description="Mengenal lebih dekat EduNest."
       />
 

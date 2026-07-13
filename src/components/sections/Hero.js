@@ -1,34 +1,53 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
+import Image from "next/image";
+
 
 export default function Hero() {
+  
   return (
+    <motion.div
+
+      initial={{
+      opacity:0,
+      y:50
+      }}
+
+      animate={{
+      opacity:1,
+      y:0
+      }}
+
+      transition={{
+      duration:0.8
+      }}
+
+>
     <section className="bg-sky-50 py-24">
       <Container>
 
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           <div>
 
-            <p className="font-semibold text-sky-600">
-              EduNest CMS
-            </p>
+            <h1 className="text-6xl font-bold leading-tight">
 
-            <h1 className="mt-4 text-5xl font-bold leading-tight">
+              Membangun
 
-              Website Modern
+             <br/>
 
-              <br />
-
-              untuk Sekolah
+              Generasi Hebat
 
             </h1>
 
-            <p className="mt-6 text-lg text-gray-600">
+            <p className="mt-6 text-lg text-slate-600">
 
-              Solusi website profesional
-              untuk PAUD, TK, SD,
-              SMP, SMA hingga lembaga pendidikan.
+              Website modern yang membantu sekolah
+              menampilkan profil, berita,
+              galeri dan PPDB Online.
 
             </p>
 
@@ -46,11 +65,13 @@ export default function Hero() {
 
           <div className="flex justify-center">
 
-            <div className="flex h-80 w-80 items-center justify-center rounded-3xl bg-white shadow-xl">
-
-              Ilustrasi
-
-            </div>
+          <Image
+            src="/images/hero.jpg"
+            width={550}
+            height={550}
+            alt="Hero"
+            className="rounded-3xl shadow-xl"
+          />
 
           </div>
 
@@ -58,5 +79,6 @@ export default function Hero() {
 
       </Container>
     </section>
+    </motion.div>
   );
 }

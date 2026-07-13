@@ -1,11 +1,11 @@
 import PageHeader from "@/components/ui/PageHeader";
 import Container from "@/components/ui/Container";
 
-export default function Berita() {
+export default function Login() {
   return (
     <>
       <PageHeader
-        title="Berita"
+        title="Login"
         description="Mengenal lebih dekat EduNest."
       />
 

@@ -1,9 +1,23 @@
-export default function Home() {
+import PageHeader from "@/components/ui/PageHeader";
+import Container from "@/components/ui/Container";
+
+export default function Guru() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold">
-        EduNest CMS 🚀
-      </h1>
-    </main>
+    <>
+      <PageHeader
+        title="Guru"
+        description="Mengenal lebih dekat EduNest."
+      />
+
+      <Container>
+        <section className="py-20">
+          <p>
+            EduNest adalah platform website modern
+            untuk sekolah yang cepat, aman,
+            dan mudah dikelola.
+          </p>
+        </section>
+      </Container>
+    </>
   );
 }

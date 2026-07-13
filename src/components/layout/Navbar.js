@@ -1,4 +1,5 @@
 import Link from "next/link";
+import navigation from "@/config/navigation";
 
 export default function Navbar() {
   return (
@@ -9,12 +10,18 @@ export default function Navbar() {
         </h1>
 
         <nav className="hidden gap-8 md:flex">
-          <Link href="/">Beranda</Link>
-          <Link href="/tentang">Tentang</Link>
-          <Link href="/program">Program</Link>
-          <Link href="/guru">Guru</Link>
-          <Link href="/galeri">Galeri</Link>
-          <Link href="/kontak">Kontak</Link>
+          {
+            navigation.map((item)=>(
+            <Link
+              key={item.href}
+              href={item.href}
+            >
+
+            {item.name}
+
+             </Link>
+             ))
+            }
         </nav>
       </div>
     </header>
