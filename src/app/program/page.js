@@ -1,7 +1,10 @@
 import PageHeader from "@/components/ui/PageHeader";
 import Programs from "@/components/sections/Programs";
+import { getPrograms } from "@/services/programService";
 
-export default function ProgramPage() {
+export default async function ProgramPage() {
+  const programs = await getPrograms();
+
   return (
     <>
       <PageHeader
@@ -9,7 +12,7 @@ export default function ProgramPage() {
         subtitle="Program unggulan sekolah kami."
       />
 
-      <Programs />
+      <Programs programs={programs} />
     </>
   );
 }
