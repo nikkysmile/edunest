@@ -1,18 +1,22 @@
-import Hero from "@/components/sections/Hero/Hero";
+import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Programs from "@/components/sections/Programs";
-import Features from "@/components/sections/Features";
-import Teachers from "@/components/sections/Teachers";
+import Features from "@/components/sections/Feature";
+import Teachers from "@/components/sections/Teacher";
 import Gallery from "@/components/sections/Gallery";
 import News from "@/components/sections/News";
 import CTA from "@/components/sections/CTA";
 
-export default function Home() {
+import { getPrograms } from "@/services/programService";
+
+export default async function Home() {
+  const programs = await getPrograms();
+
   return (
     <>
       <Hero />
       <About />
-      <Programs />
+      <Programs programs={programs} />
       <Features />
       <Teachers />
       <Gallery />

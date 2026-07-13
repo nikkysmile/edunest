@@ -1,5 +1,5 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Programs from "@/components/sections/Programs";
+import Programs from "@/components/sections/Programs/Programs";
 import { getPrograms } from "@/services/programService";
 
 export default async function ProgramPage() {
