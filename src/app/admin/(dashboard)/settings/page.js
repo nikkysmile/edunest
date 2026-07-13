@@ -1,7 +1,7 @@
-export default function GaleriPage() {
+export default function SettingsPage() {
   return (
     <h2 className="text-3xl font-bold">
-      Manajemen Galeri
+      Pengaturan
     </h2>
   );
 }

@@ -1,7 +1,7 @@
-export default function GuruPage() {
+export default function NewsPage() {
   return (
     <h2 className="text-3xl font-bold">
-      Manajemen Guru
+      Manajemen Berita
     </h2>
   );
 }

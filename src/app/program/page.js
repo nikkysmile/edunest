@@ -1,9 +1,13 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Programs from "@/components/sections/Programs/Programs";
+import Programs from "@/components/sections/Programs";
 import { getPrograms } from "@/services/programService";
 
 export default async function ProgramPage() {
-  const programs = await getPrograms();
+  const { data: programs, error } = await getPrograms();
+
+  if (error) {
+    console.error(error);
+  }
 
   return (
     <>

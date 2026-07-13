@@ -1,7 +1,7 @@
-export default function BeritaPage() {
+export default function TeacherPage() {
   return (
     <h2 className="text-3xl font-bold">
-      Manajemen Berita
+      Manajemen Guru
     </h2>
   );
 }

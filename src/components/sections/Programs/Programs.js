@@ -23,13 +23,13 @@ export default function Programs({ programs = [] }) {
         />
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {programs.map((program) => (
-            <ProgramCard
-              key={program.id}
-              program={program}
-            />
-          ))}
-        </div>
+  {programs.map((program) => (
+    <ProgramCard
+      key={program.id}
+      program={program}
+    />
+  ))}
+</div>
       </Container>
     </section>
   );
