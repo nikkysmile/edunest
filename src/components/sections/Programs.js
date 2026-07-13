@@ -6,7 +6,7 @@ import programs from "@/data/programs";
 
 export default function Programs() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-slate-50 py-24">
       <Container>
 
         <SectionTitle

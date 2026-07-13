@@ -1,23 +1,16 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Container from "@/components/ui/Container";
 
-export default function Guru() {
+export default function GuruPage() {
   return (
     <>
       <PageHeader
         title="Guru"
-        description="Mengenal lebih dekat EduNest."
+        subtitle="Tenaga pendidik profesional."
       />
 
-      <Container>
-        <section className="py-20">
-          <p>
-            EduNest adalah platform website modern
-            untuk sekolah yang cepat, aman,
-            dan mudah dikelola.
-          </p>
-        </section>
-      </Container>
+      <section className="py-20 text-center">
+        Data Guru Akan Ditampilkan Di Sini
+      </section>
     </>
   );
 }

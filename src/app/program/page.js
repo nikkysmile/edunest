@@ -1,23 +1,15 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Container from "@/components/ui/Container";
+import Programs from "@/components/sections/Programs";
 
-export default function Program() {
+export default function ProgramPage() {
   return (
     <>
       <PageHeader
         title="Program"
-        description="Mengenal lebih dekat EduNest."
+        subtitle="Program unggulan sekolah kami."
       />
 
-      <Container>
-        <section className="py-20">
-          <p>
-            EduNest adalah platform website modern
-            untuk sekolah yang cepat, aman,
-            dan mudah dikelola.
-          </p>
-        </section>
-      </Container>
+      <Programs />
     </>
   );
 }

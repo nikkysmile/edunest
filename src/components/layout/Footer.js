@@ -2,7 +2,7 @@ import site from "@/config/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t py-10">
+    <footer className="border-t bg-slate-100 py-10">
       <div className="mx-auto max-w-7xl px-6 text-center text-slate-600">
         <p>
           © {new Date().getFullYear()} {site.name}

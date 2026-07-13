@@ -1,23 +1,16 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Container from "@/components/ui/Container";
 
-export default function Berita() {
+export default function BeritaPage() {
   return (
     <>
-      <PageHeader
+     <PageHeader
         title="Berita"
-        description="Mengenal lebih dekat EduNest."
+        subtitle="Berita terbaru tentang EduNest."
       />
 
-      <Container>
-        <section className="py-20">
-          <p>
-            EduNest adalah platform website modern
-            untuk sekolah yang cepat, aman,
-            dan mudah dikelola.
-          </p>
-        </section>
-      </Container>
+      <section className="py-20 text-center">
+        Informasi Berita Akan Ditampilkan Di Sini
+      </section>
     </>
   );
 }

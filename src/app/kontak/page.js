@@ -1,23 +1,16 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Container from "@/components/ui/Container";
 
-export default function Kontak() {
+export default function KontakPage() {
   return (
     <>
-      <PageHeader
+     <PageHeader
         title="Kontak"
-        description="Mengenal lebih dekat EduNest."
+        subtitle="Hubungi kami."
       />
 
-      <Container>
-        <section className="py-20">
-          <p>
-            EduNest adalah platform website modern
-            untuk sekolah yang cepat, aman,
-            dan mudah dikelola.
-          </p>
-        </section>
-      </Container>
+      <section className="py-20 text-center">
+        Informasi Kontak Akan Ditampilkan Di Sini
+      </section>
     </>
   );
 }

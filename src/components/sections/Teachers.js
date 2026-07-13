@@ -1,23 +1,15 @@
 import PageHeader from "@/components/ui/PageHeader";
 import Container from "@/components/ui/Container";
 
-export default function Tea() {
+export default function Teachers() {
   return (
-    <>
-      <PageHeader
-        title="Teachers"
-        description="Mengenal lebih dekat EduNest."
-      />
-
+    <section className="bg-white py-20">
       <Container>
-        <section className="py-20">
-          <p>
-            EduNest adalah platform website modern
-            untuk sekolah yang cepat, aman,
-            dan mudah dikelola.
-          </p>
-        </section>
-      </Container>
-    </>
+        <PageHeader
+           title="Teachers"
+           description="Mengenal lebih dekat EduNest."
+        />                
+        </Container>
+    </section>
   );
 }

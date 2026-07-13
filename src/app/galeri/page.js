@@ -1,23 +1,16 @@
 import PageHeader from "@/components/ui/PageHeader";
-import Container from "@/components/ui/Container";
 
-export default function Galeri() {
+export default function GaleriPage() {
   return (
     <>
       <PageHeader
         title="Galeri"
-        description="Mengenal lebih dekat EduNest."
-      />
+         subtitle="Dokumentasi kegiatan sekolah."
+    />
 
-      <Container>
-        <section className="py-20">
-          <p>
-            EduNest adalah platform website modern
-            untuk sekolah yang cepat, aman,
-            dan mudah dikelola.
-          </p>
-        </section>
-      </Container>
+      <section className="py-20 text-center">
+        Dokumentasi Akan Ditampilkan Di Sini
+      </section>
     </>
   );
 }

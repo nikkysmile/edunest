@@ -1,30 +1,20 @@
 export default function Button({
-    children,
-    variant="primary"
-}){
+  children,
+  variant = "primary",
+}) {
+  const variants = {
+    primary:
+      "bg-sky-600 text-white hover:bg-sky-700",
 
-const variants={
+    secondary:
+      "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100",
+  };
 
-primary:
-"bg-sky-600 hover:bg-sky-700 text-white",
-
-secondary:
-"border border-slate-300 hover:bg-slate-100"
-
-}
-
-return(
-
-<button
-
-className={`rounded-xl px-6 py-3 font-semibold transition duration-300 ${variants[variant]}`}
-
->
-
-{children}
-
-</button>
-
-)
-
+  return (
+    <button
+      className={`rounded-xl px-6 py-3 font-semibold transition ${variants[variant]}`}
+    >
+      {children}
+    </button>
+  );
 }
