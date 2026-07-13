@@ -1,19 +1,9 @@
 const site = {
   name: "EduNest",
-  shortName: "EduNest CMS",
-
-  tagline: "Website Sekolah Modern",
-
-  description:
-    "Platform website modern untuk sekolah.",
-
+  description: "Website Sekolah Modern",
   email: "info@edunest.id",
-
-  phone: "+62 8123456789",
-
-  address: "Bandar Lampung",
-
-  copyright: `© ${new Date().getFullYear()} EduNest`,
+  phone: "",
+  address: "",
 };
 
 export default site;

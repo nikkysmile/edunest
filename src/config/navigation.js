@@ -4,7 +4,6 @@ const navigation = [
   { name: "Program", href: "/program" },
   { name: "Guru", href: "/guru" },
   { name: "Galeri", href: "/galeri" },
-  { name: "Berita", href: "/berita" },
   { name: "Kontak", href: "/kontak" },
 ];
 
