@@ -1,22 +1,37 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import Button from "@/components/ui/Button";
+import { createProgram } from "@/services/programService";
 
 export default function ProgramForm() {
+  const router = useRouter();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [icon, setIcon] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(e) {
+  e.preventDefault();
 
-    console.log({
-      title,
-      description,
-      icon,
-    });
+  const { error } = await createProgram({
+    title,
+    description,
+    icon,
+  });
+
+  if (error) {
+    alert("Gagal menyimpan program.");
+    console.error(error);
+    return;
   }
+
+  alert("Program berhasil disimpan!");
+
+  router.push("/admin/program");
+}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
