@@ -4,11 +4,8 @@ export default function Button({
   type = "button",
 }) {
   const variants = {
-    primary:
-      "bg-sky-600 text-white hover:bg-sky-700",
-
-    secondary:
-      "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100",
+    primary: "bg-sky-600 text-white hover:bg-sky-700",
+    secondary: "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100",
   };
 
   return (

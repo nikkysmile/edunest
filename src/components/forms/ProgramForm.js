@@ -1,75 +1,72 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-
 import Button from "@/components/ui/Button";
-import { createProgram } from "@/services/programService";
 
 export default function ProgramForm() {
-  const router = useRouter();
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [icon, setIcon] = useState("");
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    const { error } = await createProgram({
+    console.log({
       title,
       description,
       icon,
     });
-
-    if (error) {
-      alert("Gagal menyimpan program");
-      console.log(error);
-      return;
-    }
-
-    router.push("/admin/program");
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6"
-    >
-      <div>
-        <label>Icon</label>
-
-        <input
-          className="mt-2 w-full rounded-xl border p-3"
-          value={icon}
-          onChange={(e) => setIcon(e.target.value)}
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
 
       <div>
-        <label>Judul</label>
+        <label className="mb-2 block font-medium">
+          Judul Program
+        </label>
 
         <input
-          className="mt-2 w-full rounded-xl border p-3"
+          type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className="w-full rounded-xl border border-slate-300 p-3"
+          placeholder="Contoh: Kelas Seni"
         />
       </div>
 
       <div>
-        <label>Deskripsi</label>
+        <label className="mb-2 block font-medium">
+          Deskripsi
+        </label>
 
         <textarea
-          rows={5}
-          className="mt-2 w-full rounded-xl border p-3"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          rows={5}
+          className="w-full rounded-xl border border-slate-300 p-3"
+          placeholder="Deskripsi program..."
         />
       </div>
 
-      <Button type="submit">
-        Simpan
-      </Button>
+      <div>
+        <label className="mb-2 block font-medium">
+          Icon
+        </label>
+
+        <input
+          type="text"
+          value={icon}
+          onChange={(e) => setIcon(e.target.value)}
+          className="w-full rounded-xl border border-slate-300 p-3"
+          placeholder="palette"
+        />
+      </div>
+
+    <Button type="submit">
+  Simpan Program
+</Button>
+
     </form>
   );
 }
