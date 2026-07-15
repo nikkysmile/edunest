@@ -18,3 +18,33 @@ export async function createProgram(program) {
 
   return { data, error };
 }
+
+export async function getProgramById(id) {
+  const { data, error } = await supabase
+    .from("programs")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  return { data, error };
+}
+
+export async function updateProgram(id, program) {
+  const { data, error } = await supabase
+    .from("programs")
+    .update(program)
+    .eq("id", id)
+    .select()
+    .single();
+
+  return { data, error };
+}
+
+export async function deleteProgram(id) {
+  const { error } = await supabase
+    .from("programs")
+    .delete()
+    .eq("id", id);
+
+  return { error };
+}

@@ -4,23 +4,45 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Button from "@/components/ui/Button";
-import { createProgram } from "@/services/programService";
+import { createProgram, updateProgram } from "@/services/programService";
 
-export default function ProgramForm() {
+export default function ProgramForm({
+  initialData = null,
+  isEdit = false,
+}) {
+
   const router = useRouter();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [icon, setIcon] = useState("");
+  const [title, setTitle] = useState(
+  initialData?.title || ""
+);
 
-  async function handleSubmit(e) {
+const [description, setDescription] = useState(
+  initialData?.description || ""
+);
+
+const [icon, setIcon] = useState(
+  initialData?.icon || ""
+);
+
+async function handleSubmit(e) {
   e.preventDefault();
 
-  const { error } = await createProgram({
-    title,
-    description,
-    icon,
-  });
+  let error;
+
+  if (isEdit) {
+    ({ error } = await updateProgram(initialData.id, {
+      title,
+      description,
+      icon,
+    }));
+  } else {
+    ({ error } = await createProgram({
+      title,
+      description,
+      icon,
+    }));
+  }
 
   if (error) {
     alert("Gagal menyimpan program.");
@@ -28,9 +50,14 @@ export default function ProgramForm() {
     return;
   }
 
-  alert("Program berhasil disimpan!");
+  alert(
+    isEdit
+      ? "Program berhasil diperbarui!"
+      : "Program berhasil ditambahkan!"
+  );
 
   router.push("/admin/program");
+  router.refresh();
 }
 
   return (
