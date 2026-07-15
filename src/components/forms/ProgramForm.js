@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import Button from "@/components/ui/Button";
 import { createProgram, updateProgram } from "@/services/programService";
+import { swal } from "@/lib/swal";
 
 export default function ProgramForm({
   initialData = null,
@@ -25,9 +26,12 @@ const [icon, setIcon] = useState(
   initialData?.icon || ""
 );
 
+const [loading, setLoading] = useState(false);
+
 async function handleSubmit(e) {
   e.preventDefault();
 
+  setLoading(true);
   let error;
 
   if (isEdit) {
@@ -44,17 +48,27 @@ async function handleSubmit(e) {
     }));
   }
 
-  if (error) {
-    alert("Gagal menyimpan program.");
-    console.error(error);
-    return;
-  }
+ if (error) {
+  setLoading(false);
 
-  alert(
-    isEdit
-      ? "Program berhasil diperbarui!"
-      : "Program berhasil ditambahkan!"
-  );
+  await swal.fire({
+    icon: "error",
+    title: "Gagal",
+    text: "Program gagal disimpan.",
+  });
+
+  return;
+}
+
+  await swal.fire({
+  icon: "success",
+  title: "Berhasil",
+  text: isEdit
+    ? "Program berhasil diperbarui."
+    : "Program berhasil ditambahkan.",
+  timer: 1800,
+  showConfirmButton: false,
+});
 
   router.push("/admin/program");
   router.refresh();
@@ -105,8 +119,15 @@ async function handleSubmit(e) {
         />
       </div>
 
-    <Button type="submit">
-  Simpan Program
+    <Button
+  type="submit"
+  disabled={loading}
+>
+  {loading
+    ? "Menyimpan..."
+    : isEdit
+      ? "Update Program"
+      : "Simpan Program"}
 </Button>
 
     </form>

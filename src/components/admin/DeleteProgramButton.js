@@ -2,26 +2,45 @@
 
 import { useRouter } from "next/navigation";
 import { deleteProgram } from "@/services/programService";
+import { swal } from "@/lib/swal";
 
 export default function DeleteProgramButton({ id }) {
   const router = useRouter();
 
   async function handleDelete() {
-    const confirmed = window.confirm(
-      "Yakin ingin menghapus program ini?"
-    );
+    const result = await swal.fire({
+  title: "Hapus Program?",
+  text: "Data yang dihapus tidak dapat dikembalikan.",
+  icon: "warning",
 
-    if (!confirmed) return;
+  showCancelButton: true,
+
+  confirmButtonText: "Ya, Hapus",
+
+  cancelButtonText: "Batal",
+});
+
+if (!result.isConfirmed) return;
 
     const { error } = await deleteProgram(id);
 
     if (error) {
       console.error(error);
-      alert("Gagal menghapus program.");
+      await swal.fire({
+  icon: "error",
+  title: "Gagal",
+  text: "Program gagal dihapus.",
+});
       return;
     }
 
-    alert("Program berhasil dihapus.");
+    await swal.fire({
+  icon: "success",
+  title: "Berhasil",
+  text: "Program berhasil dihapus.",
+  timer: 1800,
+  showConfirmButton: false,
+});
 
     router.refresh();
   }
