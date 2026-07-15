@@ -12,8 +12,6 @@ export default async function ProgramPage() {
   return (
     <>
       <PageHeader
-        title="Program"
-        subtitle="Program unggulan sekolah kami."
       />
 
       <Programs programs={programs} />
