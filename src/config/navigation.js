@@ -16,8 +16,8 @@ const navigation = [
     href: "/teacher",
   },
   {
-    name: "Galeri",
-    href: "/galeri",
+    name: "Gallery",
+    href: "/gallery",
   },
   {
     name: "Berita",

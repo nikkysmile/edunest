@@ -9,10 +9,12 @@ import CTA from "@/components/sections/CTA";
 
 import { getPrograms } from "@/services/programService";
 import { getTeachers } from "@/services/teacherService";
+import { getGalleries } from "@/services/galleryService";
 
 export default async function Home() {
   const { data: programs } = await getPrograms();
   const { data: teachers } = await getTeachers();
+  const { data: galleries } = await getGalleries();
 
   return (
     <>
@@ -21,7 +23,7 @@ export default async function Home() {
       <Programs programs={programs ?? []} />
       <Features />
       <Teachers teachers={teachers ?? []} />
-      <Gallery />
+      <Gallery galleries={galleries ?? []} />
       <News />
       <CTA />
     </>
