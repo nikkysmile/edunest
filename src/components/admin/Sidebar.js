@@ -46,6 +46,13 @@ export default function Sidebar() {
         </Link>
 
         <Link
+          href="/admin/messages"
+          className="block rounded-lg px-3 py-2 hover:bg-slate-800"
+        >
+          Pesan
+        </Link>
+
+        <Link
           href="/admin/settings"
           className="block rounded-lg px-3 py-2 hover:bg-slate-800"
         >

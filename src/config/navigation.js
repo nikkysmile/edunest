@@ -25,7 +25,7 @@ const navigation = [
   },
   {
     name: "Kontak",
-    href: "/kontak",
+    href: "/contact",
   },
 ];
 
