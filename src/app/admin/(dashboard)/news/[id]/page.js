@@ -7,8 +7,10 @@ import {
 export default async function EditNewsPage({
   params,
 }) {
+  const { id } = await params;
+
   const { data: news, error } =
-    await getNewsById(params.id);
+    await getNewsById(id);
 
   if (error || !news) {
     return (
@@ -20,7 +22,6 @@ export default async function EditNewsPage({
 
   return (
     <div className="mx-auto max-w-3xl">
-
       <h1 className="mb-8 text-3xl font-bold">
         Edit Berita
       </h1>
@@ -29,7 +30,6 @@ export default async function EditNewsPage({
         initialData={news}
         isEdit
       />
-
     </div>
   );
 }
