@@ -7,10 +7,35 @@ import {
   getNewsBySlug,
 } from "@/services/newsService";
 
+export async function generateMetadata({
+  params,
+}) {
+  const { slug } = await params;
+
+  const {
+    data: news,
+  } = await getNewsBySlug(slug);
+
+  if (!news) {
+    return {
+      title: "Berita Tidak Ditemukan",
+    };
+  }
+
+  return {
+    title: news.title,
+    description: news.excerpt,
+    openGraph: {
+      title: news.title,
+      description: news.excerpt,
+      images: [news.image],
+    },
+  };
+}
+
 export default async function NewsDetailPage({
   params,
 }) {
-
   const { slug } = await params;
 
   const {
@@ -25,9 +50,7 @@ export default async function NewsDetailPage({
   return (
     <section className="bg-slate-50 py-20">
       <Container>
-
         <NewsDetail news={news} />
-
       </Container>
     </section>
   );

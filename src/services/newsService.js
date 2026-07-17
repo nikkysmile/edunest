@@ -75,3 +75,16 @@ export async function getPublishedNews() {
 
   return { data, error };
 }
+
+export async function getLatestNews(limit = 3) {
+  const { data, error } = await supabase
+    .from("news")
+    .select("*")
+    .eq("published", true)
+    .order("created_at", {
+      ascending: false,
+    })
+    .limit(limit);
+
+  return { data, error };
+}

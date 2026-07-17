@@ -4,8 +4,12 @@ import Footer from "@/components/layout/Footer";
 import site from "@/config/site";
 
 export const metadata = {
-  title: site.name,
-  description: site.description,
+  title: {
+    default: "EduNest",
+    template: "%s | EduNest",
+  },
+  description:
+    "Website resmi EduNest.",
 };
 
 export default function RootLayout({ children }) {

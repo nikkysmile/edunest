@@ -5,6 +5,7 @@ import Features from "@/components/sections/Features";
 import Teachers from "@/components/sections/Teachers";
 import Gallery from "@/components/sections/Gallery";
 import News from "@/components/sections/News";
+import HomeNews from "@/components/sections/HomeNews/HomeNews";
 import CTA from "@/components/sections/CTA";
 
 import { getPrograms } from "@/services/programService";
@@ -24,7 +25,7 @@ export default async function Home() {
       <Features />
       <Teachers teachers={teachers ?? []} />
       <Gallery galleries={galleries ?? []} />
-      <News />
+      <HomeNews />
       <CTA />
     </>
   );
