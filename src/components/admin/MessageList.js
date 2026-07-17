@@ -3,24 +3,21 @@
 import { useMemo, useState } from "react";
 
 import SearchInput from "@/components/ui/SearchInput";
+import useSearch from "@/hooks/useSearch";
 
 export default function MessageList({
   messages = [],
 }) {
-  const [search, setSearch] = useState("");
-
-  const filteredMessages = useMemo(() => {
-    const keyword = search.toLowerCase().trim();
-
-    if (!keyword) return messages;
-
-    return messages.filter((message) =>
-      message.name?.toLowerCase().includes(keyword) ||
-      message.email?.toLowerCase().includes(keyword) ||
-      message.subject?.toLowerCase().includes(keyword) ||
-      message.message?.toLowerCase().includes(keyword)
-    );
-  }, [messages, search]);
+  const {
+  search,
+  setSearch,
+  filteredData,
+} = useSearch(messages, [
+  "name",
+  "email",
+  "subject",
+  "message",
+]);
 
   return (
     <div className="space-y-6">
@@ -33,12 +30,12 @@ export default function MessageList({
 
       <div className="space-y-4">
 
-        {filteredMessages.length === 0 ? (
+        {filteredData.length === 0 ? (
           <p className="text-center text-slate-500">
             Pesan tidak ditemukan.
           </p>
         ) : (
-          filteredMessages.map((message) => (
+          filteredData.map((message) => (
             <div
               key={message.id}
               className="rounded-xl border bg-white p-6 shadow-sm"

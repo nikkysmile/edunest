@@ -7,9 +7,29 @@ import {
   GalleryList,
 } from "@/components/admin";
 
-export default async function GalleryPage() {
-  const { data: galleries, error } =
-    await getGalleries();
+import Link from "next/link";
+
+import Pagination from "@/components/ui/Pagination";
+
+export default async function GalleryPage({
+  searchParams,
+}) {
+  const params = await searchParams;
+
+  const page =
+    Number(params?.page) || 1;
+
+  const limit = 10;
+
+  const {
+    data: galleries,
+    count,
+    error,
+  } = await getGalleries(page, limit);
+
+  const totalPages = Math.ceil(
+    (count ?? 0) / limit
+  );
 
   if (error) {
     return (
@@ -22,14 +42,27 @@ export default async function GalleryPage() {
   return (
     <div className="space-y-6">
 
-      <PageHeader
-        title="Galeri"
-        buttonLabel="Tambah Galeri"
-        buttonHref="/admin/gallery/new"
-      />
+      <div className="flex items-center justify-between">
 
-      <GalleryList
-        galleries={galleries ?? []}
+        <h1 className="text-3xl font-bold">
+          Galeri
+        </h1>
+
+        <Link
+          href="/admin/gallery/new"
+          className="rounded-xl bg-sky-600 px-5 py-3 text-white hover:bg-sky-700"
+        >
+          + Tambah Galeri
+        </Link>
+
+      </div>
+
+      <GalleryList galleries={galleries} />
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        basePath="/admin/gallery"
       />
 
     </div>

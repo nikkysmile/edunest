@@ -2,9 +2,28 @@ import Link from "next/link";
 
 import NewsList from "@/components/admin/NewsList";
 import { getNews } from "@/services/newsService";
+import Pagination from "@/components/ui/Pagination";
 
-export default async function NewsPage() {
-  const { data: news, error } = await getNews();
+
+export default async function NewsPage({
+  searchParams,
+}) {
+  const params = await searchParams;
+
+  const page =
+    Number(params?.page) || 1;
+
+  const limit = 10;
+
+  const {
+    data: news,
+    count,
+    error,
+  } = await getNews(page, limit);
+
+  const totalPages = Math.ceil(
+    (count ?? 0) / limit
+  );
 
   if (error) {
     return (
@@ -33,6 +52,12 @@ export default async function NewsPage() {
       </div>
 
       <NewsList news={news} />
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        basePath="/admin/news"
+      />
 
     </div>
   );

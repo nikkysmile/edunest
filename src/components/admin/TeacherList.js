@@ -4,24 +4,19 @@ import { useMemo, useState } from "react";
 
 import SearchInput from "@/components/ui/SearchInput";
 import TeacherCard from "./TeacherCard";
+import useSearch from "@/hooks/useSearch";
 
 export default function TeacherList({
   teachers = [],
 }) {
-  const [search, setSearch] = useState("");
-
-  const filteredTeachers = useMemo(() => {
-    const keyword = search.toLowerCase().trim();
-
-    if (!keyword) return teachers;
-
-    return teachers.filter((teacher) => {
-      return (
-        teacher.name?.toLowerCase().includes(keyword) ||
-        teacher.position?.toLowerCase().includes(keyword) 
-      );
-    });
-  }, [teachers, search]);
+  const {
+  search,
+  setSearch,
+  filteredData,
+} = useSearch(teachers, [
+  "name",
+  "position",
+]);
 
   return (
     <div className="space-y-6">
@@ -32,13 +27,13 @@ export default function TeacherList({
         placeholder="Cari guru..."
       />
 
-      {filteredTeachers.length === 0 ? (
+      {filteredData.length === 0 ? (
         <p className="text-center text-slate-500">
           Guru tidak ditemukan.
         </p>
       ) : (
         <div className="space-y-4">
-          {filteredTeachers.map((teacher) => (
+          {filteredData.map((teacher) => (
             <TeacherCard
               key={teacher.id}
               teacher={teacher}

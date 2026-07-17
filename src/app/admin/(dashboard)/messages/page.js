@@ -1,26 +1,53 @@
 import MessageList from "@/components/admin/MessageList";
 import { getMessages } from "@/services/messageService";
+import Pagination from "@/components/ui/Pagination";
 
-export default async function MessagesPage() {
-  const { data: messages, error } =
-    await getMessages();
+export default async function messagesPage({
+  searchParams,
+}) {
+  const params = await searchParams;
+
+  const page =
+    Number(params?.page) || 1;
+
+  const limit = 10;
+
+  const {
+    data: messages,
+    count,
+    error,
+  } = await getMessages(page, limit);
+
+  const totalPages = Math.ceil(
+    (count ?? 0) / limit
+  );
 
   if (error) {
     return (
       <p className="text-red-500">
-        Gagal mengambil pesan.
+        Gagal mengambil data pesan.
       </p>
     );
   }
 
   return (
-    <div className="mx-auto max-w-6xl">
+    <div className="space-y-6">
 
-      <h1 className="mb-8 text-3xl font-bold">
-        Inbox Pesan
-      </h1>
+      <div className="flex items-center justify-between">
+
+        <h1 className="text-3xl font-bold">
+          Pesan
+        </h1>
+
+      </div>
 
       <MessageList messages={messages} />
+
+      <Pagination
+        currentPage={page}
+        totalPages={totalPages}
+        basePath="/admin/messages"
+      />
 
     </div>
   );

@@ -4,22 +4,19 @@ import { useMemo, useState } from "react";
 
 import SearchInput from "@/components/ui/SearchInput";
 import GalleryCard from "./GalleryCard";
+import useSearch from "@/hooks/useSearch";
 
 export default function GalleryList({
   galleries = [],
 }) {
-  const [search, setSearch] = useState("");
-
-  const filteredGalleries = useMemo(() => {
-    const keyword = search.toLowerCase().trim();
-
-    if (!keyword) return galleries;
-
-    return galleries.filter((gallery) => (
-      gallery.title?.toLowerCase().includes(keyword) ||
-      gallery.description?.toLowerCase().includes(keyword)
-    ));
-  }, [galleries, search]);
+  const {
+  search,
+  setSearch,
+  filteredData,
+} = useSearch(galleries, [
+  "title",
+  "description",
+]);
 
   return (
     <div className="space-y-6">
@@ -30,13 +27,13 @@ export default function GalleryList({
         placeholder="Cari galeri..."
       />
 
-      {filteredGalleries.length === 0 ? (
+      {filteredData.length === 0 ? (
         <p className="text-center text-slate-500">
           Galeri tidak ditemukan.
         </p>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredGalleries.map((gallery) => (
+          {filteredData.map((gallery) => (
             <GalleryCard
               key={gallery.id}
               gallery={gallery}

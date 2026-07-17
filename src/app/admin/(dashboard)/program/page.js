@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import Loading from "@/components/ui/Loading";
 import {
   PageHeader,
   ProgramList,
@@ -10,13 +9,28 @@ import EmptyState from "@/components/ui/EmptyState";
 import DeleteProgramButton from "@/components/admin/DeleteProgramButton";
 
 import { getPrograms } from "@/services/programService";
+import Pagination from "@/components/ui/Pagination";
 
-await new Promise((resolve) =>
-  setTimeout(resolve, 2000)
-);
 
-export default async function ProgramPage() {
-  const { data: programs, error } = await getPrograms();
+export default async function ProgramPage({
+  searchParams,
+}) {
+  const params = await searchParams;
+
+  const page =
+    Number(params?.page) || 1;
+
+  const limit = 10;
+
+  const {
+    data: programs,
+    count,
+    error,
+  } = await getPrograms(page, limit);
+
+  const totalPages = Math.ceil(
+    (count ?? 0) / limit
+  );
 
   if (error) {
     return (
@@ -36,18 +50,25 @@ export default async function ProgramPage() {
     );
   }
 
-  return (
-    <div>
+ return (
+  <div>
 
-      <PageHeader
-  title="Program"
-  buttonLabel="Tambah Program"
-  buttonHref="/admin/program/new"
-/>
+    <PageHeader
+      title="Program"
+      buttonLabel="Tambah Program"
+      buttonHref="/admin/program/new"
+    />
 
+    <ProgramList
+      programs={programs}
+    />
 
-      <ProgramList programs={programs} />
+    <Pagination
+      currentPage={page}
+      totalPages={totalPages}
+      basePath="/admin/program"
+    />
 
-    </div>
-  );
+  </div>
+);
 }

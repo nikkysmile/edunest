@@ -6,10 +6,27 @@ import {
   PageHeader,
   TeacherList,
 } from "@/components/admin";
+import Pagination from "@/components/ui/Pagination";
 
-export default async function TeacherPage() {
-  const { data: teachers, error } =
-    await getTeachers();
+export default async function TeachersPage({
+  searchParams,
+}) {
+  const params = await searchParams;
+
+  const page =
+    Number(params?.page) || 1;
+
+  const limit = 10;
+
+  const {
+  data: teachers,
+  count,
+  error,
+} = await getTeachers(page, limit);
+
+const totalPages = Math.ceil(
+  (count ?? 0) / limit
+);
 
   if (error) {
     return (
@@ -22,21 +39,28 @@ export default async function TeacherPage() {
   return (
     <div className="space-y-6">
 
-      <PageHeader
-        title="Guru"
-        buttonLabel="Tambah Guru"
-        buttonHref="/admin/teacher/new"
-      />
+      <div className="flex items-center justify-between">
 
-      {teachers.length === 0 ? (
+        <h1 className="text-3xl font-bold">
+          Guru
+        </h1>
 
-        <p>Belum ada guru.</p>
+        <Link
+          href="/admin/teacher/new"
+          className="rounded-xl bg-sky-600 px-5 py-3 text-white hover:bg-sky-700"
+        >
+          + Tambah Guru
+        </Link>
 
-      ) : (
+      </div>
 
-        <TeacherList teachers={teachers} />
+     <TeacherList teachers={teachers} />
 
-      )}
+<Pagination
+  currentPage={page}
+  totalPages={totalPages}
+  basePath="/admin/teacher"
+/>
 
     </div>
   );

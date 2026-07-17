@@ -1,12 +1,31 @@
 import { supabase } from "@/lib/supabase";
 
-export async function getNews() {
-  const { data, error } = await supabase
-    .from("news")
-    .select("*")
-    .order("created_at", { ascending: false });
+export async function getNews(
+  page = 1,
+  limit = 10
+) {
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
 
-  return { data, error };
+  const {
+    data,
+    error,
+    count,
+  } = await supabase
+    .from("news")
+    .select("*", {
+      count: "exact",
+    })
+    .order("created_at", {
+      ascending: false,
+    })
+    .range(from, to);
+
+  return {
+    data,
+    error,
+    count,
+  };
 }
 
 export async function getNewsById(id) {
