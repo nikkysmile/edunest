@@ -1,11 +1,12 @@
 import Link from "next/link";
-
+import { redirect } from "next/navigation";
 import { getTeachers } from "@/services/teacherService";
 
 import {
   PageHeader,
   TeacherList,
 } from "@/components/admin";
+import EmptyState from "@/components/ui/EmptyState";
 import Pagination from "@/components/ui/Pagination";
 
 export default async function TeachersPage({
@@ -28,6 +29,10 @@ const totalPages = Math.ceil(
   (count ?? 0) / limit
 );
 
+if ((count ?? 0) > 0 && page > totalPages) {
+  redirect(`/admin/teacher?page=${totalPages}`);
+}
+
   if (error) {
     return (
       <p className="text-red-500">
@@ -35,6 +40,17 @@ const totalPages = Math.ceil(
       </p>
     );
   }
+
+ if ((count ?? 0) === 0) {
+  return (
+    <EmptyState
+  title="Belum ada guru"
+  description="Silakan tambahkan guru pertama."
+  actionLabel="Tambah Guru"
+  actionHref="/admin/teacher/new"
+/>
+  );
+}
 
   return (
     <div className="space-y-6">

@@ -1,6 +1,7 @@
 import MessageList from "@/components/admin/MessageList";
 import { getMessages } from "@/services/messageService";
 import Pagination from "@/components/ui/Pagination";
+import EmptyState from "@/components/ui/EmptyState";
 
 export default async function messagesPage({
   searchParams,
@@ -29,6 +30,15 @@ export default async function messagesPage({
       </p>
     );
   }
+
+  if (!messages || messages.length === 0) {
+  return (
+    <EmptyState
+      title="Belum ada pesan"
+      description="Belum ada pesan yang masuk."
+    />
+  );
+}
 
   return (
     <div className="space-y-6">

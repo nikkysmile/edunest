@@ -1,8 +1,9 @@
 import Link from "next/link";
-
+import { redirect } from "next/navigation";
 import NewsList from "@/components/admin/NewsList";
 import { getNews } from "@/services/newsService";
 import Pagination from "@/components/ui/Pagination";
+import EmptyState from "@/components/ui/EmptyState";
 
 
 export default async function NewsPage({
@@ -25,6 +26,10 @@ export default async function NewsPage({
     (count ?? 0) / limit
   );
 
+  if ((count ?? 0) > 0 && page > totalPages) {
+  redirect(`/admin/news?page=${totalPages}`);
+}
+
   if (error) {
     return (
       <p className="text-red-500">
@@ -32,6 +37,17 @@ export default async function NewsPage({
       </p>
     );
   }
+
+  if ((count ?? 0) === 0) {
+  return (
+   <EmptyState
+  title="Belum ada berita"
+  description="Silakan tambahkan berita pertama."
+  actionLabel="Tambah Berita"
+  actionHref="/admin/news/new"
+/>
+  );
+}
 
   return (
     <div className="space-y-6">

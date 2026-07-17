@@ -1,7 +1,7 @@
 import {
   getGalleries,
 } from "@/services/galleryService";
-
+import { redirect } from "next/navigation";
 import {
   PageHeader,
   GalleryList,
@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 
 import Pagination from "@/components/ui/Pagination";
+import EmptyState from "@/components/ui/EmptyState";
 
 export default async function GalleryPage({
   searchParams,
@@ -31,11 +32,26 @@ export default async function GalleryPage({
     (count ?? 0) / limit
   );
 
+  if ((count ?? 0) > 0 && page > totalPages) {
+  redirect(`/admin/gallery?page=${totalPages}`);
+}
+
   if (error) {
     return (
       <p className="text-red-500">
         Gagal mengambil data galeri.
       </p>
+    );
+  }
+
+  if ((count ?? 0) === 0) {
+    return (
+      <EmptyState
+        title="Belum ada galeri"
+        description="Silakan tambahkan galeri pertama."
+        actionLabel="Tambah Galeri"
+        actionHref="/admin/gallery/new"
+      />
     );
   }
 

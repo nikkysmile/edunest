@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import {
   PageHeader,
@@ -32,6 +33,10 @@ export default async function ProgramPage({
     (count ?? 0) / limit
   );
 
+  if ((count ?? 0) > 0 && page > totalPages) {
+  redirect(`/admin/program?page=${totalPages}`);
+}
+
   if (error) {
     return (
       <ErrorState
@@ -41,12 +46,14 @@ export default async function ProgramPage({
     );
   }
 
-  if (!programs || programs.length === 0) {
+  if ((count ?? 0) === 0) {
     return (
       <EmptyState
-        title="Belum ada program"
-        description="Silakan tambahkan program pertama."
-      />
+  title="Belum ada program"
+  description="Silakan tambahkan program pertama."
+  actionLabel="Tambah Program"
+  actionHref="/admin/program/new"
+/>
     );
   }
 
