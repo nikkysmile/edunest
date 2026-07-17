@@ -3,6 +3,7 @@ import { getTeachers } from "@/services/teacherService";
 import { getGalleries } from "@/services/galleryService";
 import { getNews } from "@/services/newsService";
 import { getMessages } from "@/services/messageService";
+import QuickActions from "@/components/admin/dashboard/QuickActions";
 
 export default async function DashboardPage() {
 
@@ -149,7 +150,12 @@ export default async function DashboardPage() {
   </div>
 
 </div>
+
+<div className="mt-8">
+  <QuickActions />
+</div>
       
     </>
+
   );
 }
