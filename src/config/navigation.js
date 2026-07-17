@@ -21,7 +21,7 @@ const navigation = [
   },
   {
     name: "Berita",
-    href: "/berita",
+    href: "/news",
   },
   {
     name: "Kontak",
